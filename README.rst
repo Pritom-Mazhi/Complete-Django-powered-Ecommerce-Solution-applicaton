@@ -1,3 +1,4 @@
+This Ecommerce project is done for a sunglass shop but is customizable to anyone's need. This projects has features like:
 1. Product search
 2. Product details
 3. Product filtering
@@ -7,4 +8,4 @@
 7. Wishlists for customers
 8. Feature rich admin panel and functionalities
 9. Printable payment slip for customers at checkout
-10. High Security
+10. High Security & much more
