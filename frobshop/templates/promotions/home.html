@@ -1,0 +1,41 @@
+{% load i18n %}
+{% load thumbnail %}
+{% load display_tags %}
+{% load staticfiles %}
+{% load category_tags %}
+{% load basket_tags %}
+{% load product_tags %}
+
+{% block navigation %}
+<img src="https://www.visionexpress.in/assets/img/sliderimages/Banner-2%20copy.jpg" width="100%" alt="Noooo Samiul No...">
+{% endblock %}
+{% include 'partials/nav_primary.html'%}
+
+{% block header %}
+{% endblock %}
+
+<h1>Collections</h1>
+<a href="http://192.168.1.4:8000/catalogue/category/men_2/"><img src="https://image.winudf.com/v2/image1/Y29tLmRyb2lkc3RyaWtlcnMuc21hcnRfbWVuX3N1aXQuYmVhcmRfcGhvdG9fZWRpdG9yX3NjcmVlbl8xXzE1NDMxMjE4NThfMDY1/screen-1.jpg?h=355&fakeurl=1&type=.jpg" alt="Male category image" style="width:400px;height:400px;">
+<a href="http://192.168.1.4:8000/catalogue/category/women_3/"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxWzB0w73Lnc-JKrKzKo2JIKT8anu0Tq2FzmsVFAidt_-ET08F" alt="Female category image" style="width:400px;height:400px;">
+<a href="http://192.168.1.4:8000/catalogue/category/unisex_4/"><img src="https://static2.fashionbeans.com/wp-content/uploads/2018/10/UNISEXMAIN3.jpg" alt="Unisex category image" style="width:400px;height:400px;">
+
+
+{% block content %}
+  <h2>Featured Products</h2>
+  {% include 'catalogue/browse.html' %}
+{% endblock content %}
+
+
+{% block extraplates %}
+  {% include 'extraplates/community1.html' %}
+  {% include 'extraplates/community2.html' %}
+  {% include 'extraplates/community3.html' %}
+  {% include 'extraplates/community4.html' %}
+{% endblock %}
+
+{% block texts %}
+<p>This Brand ‘LUCID’ means ‘Let Us Contribute In Development’ - hence, it aims for improving lives with a promise of helping underprivileged persons with every purchase made. With every sell of any products, one t-shirt will be donated to a underprivileged kid and also a portion will be added to a fund for their development.</p>
+{% endblock %}
+
+
+{% include "partials/footer.html" %}

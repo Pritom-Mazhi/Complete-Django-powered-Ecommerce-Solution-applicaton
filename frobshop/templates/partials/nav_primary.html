@@ -1,0 +1,172 @@
+{% load currency_filters %}
+{% load category_tags %}
+{% load i18n %}
+
+        <div class="navbar-header pull-right">
+            {# This is used in mobile view #}
+            <a class="btn btn-default navbar-toggle collapsed" data-toggle="collapse" data-target=".primary-collapse">
+                <span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </span>
+            </a>
+        </div>
+
+{% block nav_extra %}
+{% endblock %}
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+          <style>
+          /* Note: Try to remove the following lines to see the effect of CSS positioning */
+          .affix {
+            top: 0;
+            width: 100%;
+            z-index: 9999 !important;
+          }
+
+          .affix + .container-fluid {
+            padding-top: 70px;
+          }
+          #login-dp{
+              min-width: 250px;
+              padding: 14px 14px 0;
+              overflow:hidden;
+              background-color:rgba(255,255,255,.8);
+          }
+          #login-dp .help-block{
+              font-size:12px
+          }
+          #login-dp .bottom{
+              background-color:rgba(255,255,255,.8);
+              border-top:1px solid #ddd;
+              clear:both;
+              padding:14px;
+          }
+          #login-dp .social-buttons{
+              margin:12px 0
+          }
+          #login-dp .social-buttons a{
+              width: 49%;
+          }
+          #login-dp .form-group {
+              margin-bottom: 10px;
+          }
+          .btn-fb{
+              color: #fff;
+              background-color:#3b5998;
+          }
+          .btn-fb:hover{
+              color: #fff;
+              background-color:#496ebc
+          }
+          .btn-tw{
+              color: #fff;
+              background-color:#55acee;
+          }
+          .btn-tw:hover{
+              color: #fff;
+              background-color:#59b5fa;
+          }
+          @media(max-width:768px){
+              #login-dp{
+                  background-color: inherit;
+                  color: #fff;
+              }
+              #login-dp .bottom{
+                  background-color: inherit;
+                  border-top:0 none;
+              }
+          }
+
+          body{
+              background:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1j9Paa0q4Y73ob0wzVgIcOzCIlLKZuPz-UEUhTlzp4kxxWvEy_A');
+              padding:50px;
+          }
+
+          </style>
+        <body>
+
+
+<!-- --------------------------------------------------- -->
+
+
+
+<!-- --------------------------------------------- -->
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<body>
+
+<nav class="navbar navbar-default navbar-inverse" data-spy="affix" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://192.168.1.4:8000/">LUCID</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="http://192.168.1.4:8000/catalogue/category/men_2/">Men</a></li>
+        <li class="active"><a href="http://192.168.1.4:8000/catalogue/category/women_3/">Women</a></li>
+        <li class="active"><a href="#">Story</a></li>
+
+      </ul>
+
+      {# search option added here #}
+      <form  method="get" action="{% url 'search:search' %}" class="navbar-form navbar-left">
+        <div class="form-group">
+          {{ search_form.q }}
+        </div>
+        <button type="submit" value="{% trans "Search" %}" class="btn btn-default">Submit</button>
+      </form>
+      {# search option ended here #}
+
+
+<!-- --------------------------------------------
+----------------------------------- -->
+
+      <ul class="nav navbar-nav navbar-right">
+        <li class="active">
+          {% if user.is_authenticated %}
+            {% block nav_account_navbar_authenticated %}
+              <li>
+                  {% if num_unread_notifications > 0 %}
+                      {# If user has new notifications - we change account link to go to inbox #}
+                      <a href="{% url 'customer:notifications-inbox' %}">
+                          <i class="icon-user"></i>
+                          {% trans "Account" %}
+                          <span class="label label-warning">{{ num_unread_notifications }}</span>
+                      </a>
+                  {% else %}
+                      <a href="{% url 'customer:summary' %}"><i class="icon-user"></i> {% trans "Account" %}</a>
+                  {% endif %}
+              </li>
+              {% if user.is_staff or perms.partner.dashboard_access %}
+                  <li><a href="{% url 'dashboard:index' %}"><i class="icon-list-ul"></i> {% trans "Dashboard" %}</a></li>
+              {% endif %}
+                  <li><a id="logout_link" href="{% url 'customer:logout' %}"><i class="icon-signout"></i> {% trans "Logout" %}</a></li>
+              {% endblock %}
+              {% else %}
+                  <li><a id="login_link" href="{% url 'customer:login' %}"><i class="icon-signin"></i> {% trans "Login or register" %}</a></li>
+              {% endif %}
+            </li>
+          </ul>
+
+</nav>
+
+</body>
