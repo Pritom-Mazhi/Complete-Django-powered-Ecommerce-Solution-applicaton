@@ -53,8 +53,8 @@ ALLOWED_HOSTS = ['192.168.1.4', 'localhost', '127.0.0.1']
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'thedev222@gmail.com'
-EMAIL_HOST_PASSWORD = 'tukutuku22'
+EMAIL_HOST_USER = 'email@provider.com'
+EMAIL_HOST_PASSWORD = 'password_of_email'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 EMAIL_FROM = EMAIL_HOST_USER
 EMAIL_SUBJECT_PREFIX = '[Lucid]'
