@@ -1,4 +1,4 @@
-This Ecommerce project is done for a sunglass shop but is customizable to anyone's need. This projects has features like:
+This Ecommerce project is done for a sunglass shop. This is not the original code but based on this primary skeletonbut, one can customize it to anyone's need. This projects has features like:
 1. Product search
 2. Product details
 3. Product filtering
